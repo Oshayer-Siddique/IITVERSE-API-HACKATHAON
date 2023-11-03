@@ -50,7 +50,7 @@ async function getcoordinate(req, res) {
         console.log("Error");
     }
 
-    const apiUrl3 = `https://api.weatherbit.io/v2.0/current/airquality?lat=${lat}&lon=${lon}&key=${process.env.api_key1}`;
+    const apiUrl3 = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${process.env.api_key1}`;
 
     //console.log(apiUrl3);
     const response1 = await axios.get(apiUrl3);
@@ -126,7 +126,7 @@ async function getcoordinate(req, res) {
     console.log(socio_data)
 
 
-    res.json({ status: 'success', message: 'data is Ok', air_data: response1.data, socio_data: socio_data})
+    res.json({ status: 'success', message: 'data is Ok', city: req.body.city, air_data: response1.data, socio_data: socio_data})
 
 
 
