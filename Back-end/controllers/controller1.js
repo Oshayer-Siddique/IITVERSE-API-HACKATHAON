@@ -344,6 +344,45 @@ async function countrylist(req,res){
 
 
 
+async function getfulldata(req,res){
+    
+    const filepath = './controllers/megafile.json';
+    //console.log("Begin");
+    fs1.readFile(filepath,'utf8',(err,data) =>{
+        if(err){
+            console.error(err);
+            return;
+        }
+        try {
+            // Parse the JSON data
+            console.log("1");
+            const jsonData = JSON.parse(data);
+            console.log("2");
+        
+            // Sort the JSON data based on the "City" property
+            // jsonData.sort(sortByPropertyAsc("aqi"))
+            // console.log(3);
+        
+            // Convert the sorted data back to a JSON string
+            const sortedJson = JSON.stringify(jsonData, null, 2);
+            res.send(sortedJson);
+        }
+        catch(err){
+
+        }
+
+          
+        
+    })
+
+    
+
+
+}
+
+
+
+
 
 
 module.exports = {
@@ -353,4 +392,5 @@ module.exports = {
     sortcityDsc,
     sortpopulation_socialdata,
     sortGdp_socialdata,
+    getfulldata,
 }
