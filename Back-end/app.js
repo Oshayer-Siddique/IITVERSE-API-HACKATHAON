@@ -12,6 +12,10 @@ var axios = require('axios');
 
 
 const app = express();
+
+app.use(cors({
+    origin: "http://localhost:3000",
+}));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
