@@ -11,34 +11,6 @@ const fs1 = require('fs')
 const countries = require("i18n-iso-countries");
 
 
-async function countrylist(req, res) {
-    try {
-        const apiUrl1 = 'http://api.airvisual.com/v2/countries?key=1';
-        const response = await axios.get(apiUrl1);
-        if (response.data.status === 'success') {
-            const data = response.data.data;
-
-            const dataset1 = [];
-            for (let i = 0; i < data.length; i++) {
-                dataset1.push({
-                    country: data[i].country,
-                })
-            }
-
-            res.json({ status: 'success', message: 'data is Ok', data: dataset1 })
-        }
-        else {
-            res.status(500).json({ error: 'API request returned an error' });
-        }
-
-    }
-    catch (err) {
-        console.error('Error while making the API request:', err);
-        res.status(500).json({ error: 'An error occurred while processing the data' });
-
-    }
-
-}
 
 
 let lat, lon;
@@ -332,6 +304,44 @@ async function sortGdp_socialdata(req,res){
 
 
 }
+
+
+async function countrylist(req,res){
+    
+    const filepath = './controllers/countries.json';
+    //console.log("Begin");
+    fs1.readFile(filepath,'utf8',(err,data) =>{
+        if(err){
+            console.error(err);
+            return;
+        }
+        try {
+            // Parse the JSON data
+            //console.log("1");
+            const jsonData = JSON.parse(data);
+            //console.log("2");
+        
+            // Sort the JSON data based on the "City" property
+            jsonData.sort(sortByPropertyAsc("Country"))
+            //console.log(3);
+        
+            // Convert the sorted data back to a JSON string
+            const sortedJson = JSON.stringify(jsonData, null, 2);
+            res.send(sortedJson);
+        }
+        catch(err){
+
+        }
+
+          
+        
+    })
+
+    
+
+
+}
+
 
 
 

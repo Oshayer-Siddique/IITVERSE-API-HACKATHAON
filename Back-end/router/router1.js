@@ -6,7 +6,7 @@ const {countrylist,getcoordinate,sortcity,sortpopulation_socialdata,
 sortcityDsc,sortGdp_socialdata} = require('../controllers/controller1');
 
 
-//router.get("/",countrylist);
+router.get("/countrylist",countrylist);
 router.get("/getdata",getcoordinate);
 router.get("/sortcity",sortcity);
 router.get("/sortcitydsc",sortcityDsc);
