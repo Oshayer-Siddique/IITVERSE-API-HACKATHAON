@@ -58,3 +58,20 @@ Feel free to contribute to this project or provide feedback. If you encounter an
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
+
+
+
+
+Welcome to the Team Vanguard project!
+
+## Getting Started
+
+To get started with this project, follow the steps below:
+
+### Initialize the Front End
+
+To run the front end of the project, use the following command:
+
+```bash
+npm start
+
